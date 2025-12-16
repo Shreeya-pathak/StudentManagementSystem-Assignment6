@@ -1,0 +1,62 @@
+<div class="container">
+  <h2>Student Management</h2>
+
+  <!-- FORM CARD -->
+  <div class="card">
+    <h3>{{ isEdit ? 'Edit Student' : 'Add Student' }}</h3>
+
+    <div class="form-row">
+      <input placeholder="Name" [(ngModel)]="student.name">
+      <input placeholder="Class" [(ngModel)]="student.class">
+      <input placeholder="Section" [(ngModel)]="student.section">
+    </div>
+
+    <div class="actions">
+      <button class="btn primary" *ngIf="!isEdit" (click)="addStudent()">
+        Add Student
+      </button>
+
+      <button class="btn success" *ngIf="isEdit" (click)="updateStudent()">
+        Update
+      </button>
+
+      <button class="btn danger" *ngIf="isEdit" (click)="resetForm()">
+        Cancel
+      </button>
+    </div>
+  </div>
+
+  <!-- TABLE CARD -->
+  <div class="card">
+    <h3>Student List</h3>
+
+    <table *ngIf="students.length > 0">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Class</th>
+          <th>Section</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let s of students">
+          <td>{{ s.id }}</td>
+          <td>{{ s.name }}</td>
+          <td>{{ s.class }}</td>
+          <td>{{ s.section }}</td>
+          <td>
+            <button class="btn small info" (click)="editStudent(s)">Edit</button>
+            <button class="btn small danger" (click)="deleteStudent(s.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p *ngIf="students.length === 0" class="empty">
+      No students found.
+    </p>
+  </div>
+</div>
