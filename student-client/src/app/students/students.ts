@@ -25,7 +25,7 @@ export class Students implements OnInit {
 
   constructor(
     readonly studentsService: StudentsService,
-    readonly cdr: ChangeDetectorRef   // 🔥 ADD THIS
+    readonly cdr: ChangeDetectorRef   
   ) {}
 
   ngOnInit(): void {
@@ -37,7 +37,7 @@ export class Students implements OnInit {
       next: (res) => {
         this.students = res;
 
-        // 🔥 FORCE UI UPDATE ON FIRST LOAD
+        
         this.cdr.detectChanges();
       }
     });
